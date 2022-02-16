@@ -65,16 +65,26 @@ public class GameManager : MonoBehaviour
                 _gameTimer += Time.deltaTime;
                 if (_gameTimer > 45)
                 {
+                    ResetAllBlocks();
                     _gameState = "Win";
                     _charAnimator.SetInteger("State", 3);
                     _sM.FinishLevel();
                 }
                 if (_sM._currentHealth <= 0)
                 {
+                    ResetAllBlocks();
                     _gameState = "Lose";
                     _charAnimator.SetInteger("State", 2);
                 }
                 break;
+        }
+    }
+    public void ResetAllBlocks()
+    {
+        GameObject[] _allBlockObjects = GameObject.FindGameObjectsWithTag("Road");
+        for (int i = 0; i < _allBlockObjects.Length; i++)
+        {
+            _allBlockObjects[i].GetComponent<Road>().ClearRoadType();
         }
     }
     public void StartGame()

@@ -48,7 +48,7 @@ public class CharacterMovement : MonoBehaviour
             Vector3 _spawmPos = _col.transform.position;
             _spawmPos.y += 2;
             _charAnimator.SetTrigger("Hit");
-            _charSpeed = 0.25f;
+            _charSpeed = 0.1f;
             _col.transform.parent.gameObject.SetActive(false);
             GameManager.Instance._sM.HitDamage();
             GameManager.Instance.SpawmHitEffect(_spawmPos);
@@ -70,7 +70,7 @@ public class CharacterMovement : MonoBehaviour
     }
     public void MovementControl(string _dir)//MouseController scriptimin karakterime yolladýðý eventleri tek çatý altýnda topladým.
     {
-        if (_charSpeed < 0.25f || GameManager.Instance._gameState!="Game")
+        if (_charSpeed < 0.25f || GameManager.Instance._gameState!="Game" || GameManager.Instance.GetCurrentAnimatorName()!="Run")
             return;
         switch (_dir)
         {
